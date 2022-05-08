@@ -1,0 +1,12 @@
+{
+    "id": "#number",
+    "createdAt": "#? timeValidator(_)",
+    "updatedAt": "#? timeValidator(_)",
+    "body": "#string",
+    "author": {
+        "username": "#string",
+        "bio": "#null",
+        "image": "#string",
+        "following": "#boolean"
+    }
+}

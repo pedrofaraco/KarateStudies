@@ -1,0 +1,20 @@
+{
+    "id": "#number",
+    "slug": "#string",
+    "title": "#string",
+    "description": "#string",
+    "body": "#string",
+    "createdAt": "#? timeValidator(_)",
+    "updatedAt": "#? timeValidator(_)",
+    "authorId": "#number",
+    "tagList": "#array",
+    "author": {
+        "username": "#string",
+        "bio": "#null",
+        "following": "#boolean",
+        "image": "#string"
+    },
+    "favoritedBy": "#array",
+    "favorited": true,
+    "favoritesCount": "#number"
+}

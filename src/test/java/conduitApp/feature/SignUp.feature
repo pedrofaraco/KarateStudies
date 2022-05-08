@@ -18,7 +18,6 @@ Feature: Test for the user signup
     * def randomUsername = call jsFunction
 
   Scenario: Signup user
-
     Given path 'users'
     And request
     """
@@ -45,7 +44,7 @@ Feature: Test for the user signup
       }
     """
 
-  @debug
+
   Scenario Outline: Validate Sign Up error messages
 
     Given path 'users'

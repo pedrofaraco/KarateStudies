@@ -1,7 +1,14 @@
+  
 Feature: Articles for the homepage
 
   Background: Define URL
-    Given url apiUrl
+    * url apiUrl
+    * def articleRequestBody = read('classpath:conduitApp/json/newArticleRequest.json')
+    * def dataGenerator = Java.type('helpers.DataGenerators')
+    * def generatedArticleValues = dataGenerator.getRandomArticleValues()
+    * set articleRequestBody.article.title = generatedArticleValues.title
+    * set articleRequestBody.article.description = generatedArticleValues.description
+    * set articleRequestBody.article.body = generatedArticleValues.body
 
   #@ignore
   #Scenario: Create a new article
@@ -14,7 +21,7 @@ Feature: Articles for the homepage
 
   Scenario: Create and delete article
     Given path 'articles'
-    And request {"article": {"tagList": [],"title": "Article to Delete","description": "Description to Delete","body": "Text do Delete"}}
+    And request articleRequestBody
     When method POST
     Then status 200
     * def articleID = response.article.slug
@@ -23,7 +30,7 @@ Feature: Articles for the homepage
     Given path 'articles'
     When method GET
     Then status 200
-    And match response.articles[0].title == "Article to Delete"
+    And match response.articles[0].title == articleRequestBody.article.title
 
     Given path 'articles',articleID
     When method Delete
@@ -33,4 +40,4 @@ Feature: Articles for the homepage
     Given path 'articles'
     When method GET
     Then status 200
-    And match response.articles[0].title != "Article to Delete"
+    And match response.articles[0].title != articleRequestBody.article.title
